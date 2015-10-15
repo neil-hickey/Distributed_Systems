@@ -2,7 +2,7 @@ import sys, socket
 from server import *
 
 def start_server():
-    # Start the server in thread pool mode
+    # Start the server 
     s = Server('0.0.0.0', int(sys.argv[1]))
     s.start()
 

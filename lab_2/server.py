@@ -1,6 +1,7 @@
 import select, socket
 from threadpool import *
 
+STUD_ID = 'fb39f28f884055ad31481634066534791f30aaa4f480f95a6b322591ed17e400'
 class Server():
 	def __init__(self, host, port, workers=20):
 		self.pool = ThreadPool(workers)
@@ -44,8 +45,8 @@ class Server():
 			Thread(target=self.shutdown, args=[False]).start()
 		elif msg[:4] == 'HELO':
 			print "sending..." 
-			print "%sIP:%s\nPort:%s\nStudentID:12306113" % (msg,  socket.gethostbyname(socket.gethostname()), addr[1])
-			conn.sendall("HELO %sIP:%s\nPort:%s\nStudentID:12306113" % (msg,  socket.gethostbyname(socket.gethostname()), addr[1]))
+			print "%sIP:%s\nPort:%s\nStudentID:%s" % (msg,  socket.gethostbyname(socket.gethostname()), addr[1], STUD_ID)
+			conn.sendall("HELO %sIP:%s\nPort:%s\nStudentID:%s" % (msg,  socket.gethostbyname(socket.gethostname()), addr[1], STUD_ID))
 		else:
 			print "Unrecognized Command"
 			conn.sendall("Unrecognized Command")
